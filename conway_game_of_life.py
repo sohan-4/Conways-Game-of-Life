@@ -1,6 +1,7 @@
 
 import time
 import copy
+import sys
 
 def create_board(ix, iy):
     board=[]
@@ -119,4 +120,18 @@ if __name__ ==  "__main__":
         print("Tick ", i+1)
         print_board(boards[i])
 
+    answer = input("Would you like to print this to a file? (y/n)")
+    org_out = sys.stdout
+    if (answer.lower() == 'y'):
+        filename = input("Enter filename: ")
+        with open(filename, 'w') as f:
+            sys.stdout = f
+            for i in range(len(boards)):
+                print("Tick ", i+1)
+                print_board(boards[i])
+
+    sys.stdout = org_out
+    if (answer.lower() == 'y'):
+        print("File has been written")
+    input("Press enter to exit")
     print()
